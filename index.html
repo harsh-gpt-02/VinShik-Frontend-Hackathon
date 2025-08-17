@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel ="stylesheet" href="style.css">
+</head>
+<body>
+     <div class="bg-elements">
+        <div class="bg-circle circle-1"></div>
+        <div class="bg-circle circle-2"></div>
+        <div class="bg-circle circle-3"></div>
+    </div>
+
+    <!-- Menu Toggle Button (for mobile) -->
+    <div class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <div class="logo-icon">V</div>
+            <div class="logo-text">VinShik</div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item active" data-page="dashboard">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="nav-item" data-page="calendar">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Calendar</span>
+                </a>
+            </li>
+            <li class="nav-item" data-page="map">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Map</span>
+                </a>
+            </li>
+            <li class="nav-item" data-page="clients">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Clients</span>
+                </a>
+            </li>
+            <li class="nav-item" data-page="jobs">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Jobs</span>
+                </a>
+            </li>
+            <li class="nav-item" data-page="quotes">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Quotes</span>
+                </a>
+            </li>
+            <li class="nav-item" data-page="services">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    <span>My Services</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div class="welcome">
+                <h1>Welcome back, Sajid & Harsh</h1>
+                <p>Here's what you need to focus on today</p>
+            </div>
+            <div class="user-profile">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="sajid">
+                <span>Harsh</span>
+                <i class="fas fa-chevron-down" style="margin-left: 8px; font-size: 12px;"></i>
+            </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page-content active">
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-bolt"></i>
+                        Active Jobs
+                    </div>
+                    <div class="card-value">40.9k</div>
+                    <div class="card-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        +25%
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-spinner"></i>
+                        Jobs in Progress
+                    </div>
+                    <div class="card-value">90.5k</div>
+                    <div class="card-change negative">
+                        <i class="fas fa-arrow-down"></i>
+                        -30%
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-check-circle"></i>
+                        Finished Jobs
+                    </div>
+                    <div class="card-value">66.3k</div>
+                    <div class="card-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        +3.3%
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-star"></i>
+                        New Leads
+                    </div>
+                    <div class="card-value">92.3k</div>
+                    <div class="card-change negative">
+                        <i class="fas fa-arrow-down"></i>
+                        -31%
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar Page -->
+        <div id="calendar-page" class="page-content">
+            <div class="page-header">
+                <h2 class="page-title">Calendar</h2>
+                <div class="page-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="btn btn-outline">Today</button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Event
+                    </button>
+                </div>
+            </div>
+            <div class="calendar-container">
+                <table class="calendar">
+                    <thead>
+                        <tr>
+                            <th>Sunday</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                            <th>Saturday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="calendar-day">28</div>
+                                <div class="calendar-event event-primary">Meeting with Client</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">29</div>
+                                <div class="calendar-event event-success">Job #1234 Due</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">30</div>
+                                <div class="calendar-event event-warning">Follow Up</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">31</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">1</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">2</div>
+                                <div class="calendar-event event-primary">Team Meeting</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">3</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="calendar-day">4</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">5</div>
+                                <div class="calendar-event event-success">Job #1235 Start</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">6</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">7</div>
+                                <div class="calendar-event event-primary">Client Presentation</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">8</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">9</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">10</div>
+                                <div class="calendar-event event-warning">Quote Due</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="calendar-day">11</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">12</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">13</div>
+                                <div class="calendar-event event-success">Job #1236 Due</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">14</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">15</div>
+                                <div class="calendar-event event-primary">Monthly Review</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">16</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">17</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="calendar-day">18</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">19</div>
+                                <div class="calendar-event event-warning">Follow Up</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">20</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">21</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">22</div>
+                                <div class="calendar-event event-primary">New Client Meeting</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">23</div>
+                            </td>
+                            <td>
+                                <div class="calendar-day">24</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Map Page -->
+        <div id="map-page" class="page-content">
+            <div class="page-header">
+                <h2 class="page-title">Job Locations</h2>
+                <div class="page-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-filter"></i> Filter
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Location
+                    </button>
+                </div>
+            </div>
+            <div id="map"></div>
+        </div>
+
+        <!-- Clients Page -->
+        <div id="clients-page" class="page-content">
+            <div class="page-header">
+                <h2 class="page-title">Clients</h2>
+                <div class="page-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Client
+                    </button>
+                </div>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Client</th>
+                        
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Jobs</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="avatar">
+                                <span>Sajid Hussain</span>
+                            </div>
+                        </td>
+                        
+                        <td>sazidhhussain581804@gmail.com</td>
+                        <td>9523627889</td>
+                        <td>12</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="avatar">
+                                <span>Rakesh Kumar</span>
+                            </div>
+                        </td>
+                    
+                        <td>rakeshkr2611@gmail.com</td>
+                        <td>9771553864</td>
+                        <td>8</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img src="https://randomuser.me/api/portraits/men/67.jpg" class="avatar">
+                                <span>Harsh Gupta</span>
+                            </div>
+                        </td>
+                
+                        <td>harshkr2476@gmail.com</td>
+                        <td>9812217505</td>
+                        <td>5</td>
+                        <td><span class="status-badge status-pending">Pending</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img src="https://randomuser.me/api/portraits/women/28.jpg" class="avatar">
+                                <span>Pandit Karan</span>
+                            </div>
+                        </td>
+                        <td>karan581804@gmail.com</td>
+                        <td>9812518505</td>
+                        <td>15</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Jobs Page -->
+        <div id="jobs-page" class="page-content">
+            <div class="page-header">
+                <h2 class="page-title">Jobs</h2>
+                <div class="page-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-filter"></i> Filter
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Job
+                    </button>
+                </div>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Job ID</th>
+                        <th>Client</th>
+                        <th>Description</th>
+                        <th>Start Date</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#JOB-1001</td>
+                        <td>Sajid Hussain</td>
+                        <td>Web developer</td>
+                        <td>2025-06-01</td>
+                        <td>2026-04-15</td>
+                        <td><span class="status-badge status-completed">Completed</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#JOB-1002</td>
+                        <td>Rakesh Kumar</td>
+                        <td>Java Developer</td>
+                        <td>2025-06-15</td>
+                        <td>2026-08-30</td>
+                        <td><span class="status-badge status-active">In Progress</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#JOB-1003</td>
+                        <td>Harsh Gupta</td>
+                        <td>FullStack Developer </td>
+                        <td>2025-07-01</td>
+                        <td>2026-09-01</td>
+                        <td><span class="status-badge status-active">In Progress</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#JOB-1004</td>
+                        <td>Pandit Karan</td>
+                        <td>Cloud Computing</td>
+                        <td>2025-07-10</td>
+                        <td>2026-10-15</td>
+                        <td><span class="status-badge status-pending">Pending</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Quotes Page -->
+        <div id="quotes-page" class="page-content">
+            <div class="page-header">
+                <h2 class="page-title">Quotes</h2>
+                <div class="page-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Create Quote
+                    </button>
+                </div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-header">
+                    <div class="quote-client">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="avatar">
+                        <div>
+                            <h3>Sajid Hussain</h3>
+                            <div class="quote-meta">Quote #QT-1001 | Created: 2023-06-01</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="quote-amount">$12,500.00</div>
+                        <div class="quote-status status-active">Accepted</div>
+                    </div>
+                </div>
+                <div class="quote-details">
+                    <p>Website redesign including new CMS implementation and SEO optimization. Project estimated to take 6 weeks.</p>
+                </div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-header">
+                    <div class="quote-client">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="avatar">
+                        <div>
+                            <h3>Rakesh Kumar</h3>
+                            <div class="quote-meta">Quote #QT-1002 | Created: 2023-06-15</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="quote-amount">$8,750.00</div>
+                        <div class="quote-status status-pending">Pending</div>
+                    </div>
+                </div>
+                <div class="quote-details">
+                    <p>Mobile app development for iOS and Android platforms with backend API integration.</p>
+                </div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-header">
+                    <div class="quote-client">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" class="avatar">
+                        <div>
+                            <h3>Harsh Gupta</h3>
+                            <div class="quote-meta">Quote #QT-1003 | Created: 2023-07-01</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="quote-amount">$5,200.00</div>
+                        <div class="quote-status status-active">Accepted</div>
+                    </div>
+                </div>
+                <div class="quote-details">
+                    <p>SEO optimization package including keyword research, on-page optimization, and monthly reporting.</p>
+                </div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-header">
+                    <div class="quote-client">
+                        <img src="https://randomuser.me/api/portraits/women/28.jpg" class="avatar">
+                        <div>
+                            <h3>Pandit Karan</h3>
+                            <div class="quote-meta">Quote #QT-1004 | Created: 2023-07-10</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="quote-amount">$22,300.00</div>
+                        <div class="quote-status status-pending">Pending</div>
+                    </div>
+                </div>
+                <div class="quote-details">
+                    <p>E-commerce platform development with custom payment gateway integration and inventory management.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Page -->
+        <div id="services-page" class="page-content">
+            <div class="page-header">
+                <h2 class="page-title">My Services</h2>
+                <div class="page-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Service
+                    </button>
+                </div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="service-title">Website Development</h3>
+                    <p class="service-description">Custom website development with responsive design, CMS integration, and SEO optimization.</p>
+                    <div class="service-price">$2,500+</div>
+                    <div class="service-meta">
+                        <span><i class="fas fa-clock"></i> 2-4 weeks</span>
+                        <span><i class="fas fa-star"></i> 4.8 (24)</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Mobile App Development</h3>
+                    <p class="service-description">Native iOS and Android app development with custom features and backend integration.</p>
+                    <div class="service-price">$5,000+</div>
+                    <div class="service-meta">
+                        <span><i class="fas fa-clock"></i> 4-8 weeks</span>
+                        <span><i class="fas fa-star"></i> 4.9 (18)</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="service-title">SEO Optimization</h3>
+                    <p class="service-description">Comprehensive SEO package including keyword research, on-page optimization, and monthly reporting.</p>
+                    <div class="service-price">$800/mo</div>
+                    <div class="service-meta">
+                        <span><i class="fas fa-clock"></i> Ongoing</span>
+                        <span><i class="fas fa-star"></i> 4.7 (32)</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="service-title">E-commerce Solutions</h3>
+                    <p class="service-description">Complete e-commerce platform development with payment gateway integration and inventory management.</p>
+                    <div class="service-price">$3,500+</div>
+                    <div class="service-meta">
+                        <span><i class="fas fa-clock"></i> 4-6 weeks</span>
+                        <span><i class="fas fa-star"></i> 4.8 (15)</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="service-title">Brand Identity</h3>
+                    <p class="service-description">Logo design, brand guidelines, and marketing materials to establish your brand identity.</p>
+                    <div class="service-price">$1,200+</div>
+                    <div class="service-meta">
+                        <span><i class="fas fa-clock"></i> 1-2 weeks</span>
+                        <span><i class="fas fa-star"></i> 4.9 (27)</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">Digital Marketing</h3>
+                    <p class="service-description">Comprehensive digital marketing strategy including social media, PPC, and content marketing.</p>
+                    <div class="service-price">$1,500/mo</div>
+                    <div class="service-meta">
+                        <span><i class="fas fa-clock"></i> Ongoing</span>
+                        <span><i class="fas fa-star"></i> 4.6 (21)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
